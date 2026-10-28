@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es"><head><meta charset="utf-8">
+<html lang="es" data-theme="cuaderno"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Calculadora de vigas isostáticas</title>
 <style>
@@ -26,33 +26,50 @@ button.p{background:var(--acc);border-color:var(--acc);color:#fff;font-weight:60
 table{width:100%;border-collapse:collapse;font-size:.95rem}
 td,th{padding:6px 4px;border-bottom:1px solid var(--line);text-align:left}td:last-child{text-align:right;white-space:nowrap}
 .ok{background:var(--ok);border-radius:8px;padding:8px 10px;margin-top:8px}
-.eq{font-family:ui-monospace,Menlo,monospace;font-size:.82rem;color:var(--mut);margin:.2em 0}
+.st{margin:1em 0 .2em;font-weight:700}.eq{font-family:ui-monospace,Menlo,monospace;font-size:.82rem;color:var(--mut);margin:.2em 0}
 .cw{overflow-x:auto}canvas{display:block;touch-action:pan-y;cursor:crosshair}
 details{font-size:.92rem}summary{cursor:pointer;font-weight:600}
+:root{--hf:Georgia,serif;--grid:none;--onacc:#fff}
+:root[data-theme=cuaderno]{--bg:#f3efe3;--card:#fffdf7;--fg:#1f2a44;--mut:#5b6478;--line:#b8c2d6;--acc:#1d4fa8;--red:#b3261e;--grn:#2d7a3e;--wrn:#fbe3df;--ok:#e4efd9;--hf:'Bradley Hand','Segoe Print','Chalkboard SE','Comic Neue',Georgia,serif;--grid:linear-gradient(rgba(60,100,170,.2) 1px,transparent 1px),linear-gradient(90deg,rgba(60,100,170,.2) 1px,transparent 1px)}
+:root[data-theme=plano]{--bg:#0f3a6b;--card:#14487f;--fg:#eaf3ff;--mut:#a9c4e6;--line:#5f8fc7;--acc:#ffd54a;--red:#ff9e80;--grn:#9be28a;--wrn:#5a2a3a;--ok:#1b5a6a;--onacc:#0f3a6b;--hf:'Courier New',monospace;--grid:linear-gradient(rgba(255,255,255,.1) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.1) 1px,transparent 1px)}
+:root[data-theme=pizarra]{--bg:#24352b;--card:#2c4034;--fg:#f1f1e6;--mut:#b7c4b3;--line:#5a7565;--acc:#ffe27a;--red:#ff9a8a;--grn:#a6e3a1;--wrn:#5a3333;--ok:#35503f;--onacc:#24352b;--hf:'Bradley Hand','Segoe Print','Chalkboard SE',Georgia,serif}
+:root[data-theme=taller]{--bg:#e6e6e2;--card:#fff;--fg:#222;--mut:#555;--line:#bdbdb6;--acc:#e8590c;--red:#c92a2a;--grn:#2b8a3e;--wrn:#ffe3e3;--ok:#e6f4ea;--hf:'Arial Narrow','Helvetica Neue',Arial,sans-serif}
+:root[data-theme=taller] h1,:root[data-theme=taller] h2{text-transform:uppercase;letter-spacing:.03em}
+:root[data-theme=noche]{--bg:#15171a;--card:#1e2126;--fg:#eceff3;--mut:#9aa3ae;--line:#383d45;--acc:#6db3ff;--red:#ff7b72;--grn:#56d38a;--wrn:#3a1f1e;--ok:#18301f;--onacc:#0b1220;--hf:system-ui,sans-serif}
+body{background-color:var(--bg);background-image:var(--grid);background-size:22px 22px}
+h1,h2{font-family:var(--hf)}h1{font-size:1.9rem;font-weight:700;margin:.3em 0}
+h2{display:inline-block;font-size:1.25rem;border-bottom:3px solid var(--acc);padding-bottom:1px;margin-bottom:.8em}
+.card{border-radius:4px;border:1.5px solid var(--line)}.ld{border-radius:3px}
+input,select,button{border-radius:3px;border:1.5px solid var(--line)}input,select{background:var(--card)}button{background:var(--card)}button.p{color:var(--onacc)}
+.ok{border-radius:3px;border-left:4px solid var(--grn)}
+#tmw{display:flex;align-items:center;gap:10px;margin:4px 0 10px;font-size:.9rem;color:var(--mut)}
+#tm{display:flex;gap:8px}#tm button{width:30px;height:30px;padding:0;border-radius:50%;border:2px solid var(--fg)}#tm button[aria-pressed=true]{outline:3px solid var(--acc);outline-offset:2px}
 </style></head><body><main>
-<h1>📐 Calculadora de vigas isostáticas</h1>
-<p class="mut">Seguí los 3 pasos: el dibujo y los diagramas <b>se actualizan solos</b> mientras cargás los datos. Unidades: metros (m) y kilonewton (kN).</p>
+<h1>Calculadora de vigas isostáticas</h1>
+<div id="tmw"><span>Fondo:</span><div id="tm"></div></div>
+<p class="mut">Seguí los 3 pasos: el dibujo y los diagramas <b>se actualizan solos</b> mientras cargás los datos. Longitudes en metros (m); elegí si las fuerzas van en N o en kN.</p>
 
-<section class="card"><h2>🧱 Paso 1: ¿Cómo es tu viga?</h2><div class="row">
+<section class="card"><h2>1 · ¿Cómo es tu viga?</h2><div class="row">
 <label>¿Cuánto mide la viga? (m)<input id="L" inputmode="decimal" placeholder="ej: 6"></label>
 <label>¿Cómo se apoya?<select id="tipo"><option value="sa">Apoyada en 2 puntos (A y B)</option><option value="vo">Voladizo (empotrada en una pared)</option></select></label>
 <label><span id="la">Apoyo A (fijo): ¿a cuántos m del borde izquierdo?</span><input id="xa" inputmode="decimal"></label>
 <label id="wb">Apoyo B (móvil): ¿a cuántos m del borde izquierdo?<input id="xb" inputmode="decimal"></label>
+<label>Unidad de fuerza<select id="un"><option>kN</option><option>N</option></select></label>
 </div></section>
 
-<section class="card"><h2>⬇️ Paso 2: ¿Qué cargas tiene?</h2>
+<section class="card"><h2>2 · ¿Qué cargas tiene?</h2>
 <p class="mut">Cargas positivas hacia abajo (↓); negativas, hacia arriba (↑). Momento aplicado positivo = horario (↻). En las puntuales, el ángulo se mide desde el eje de la viga (→) girando hacia abajo: 90° = vertical ↓ (por defecto), 0° = horizontal →, 180° = horizontal ←. Podés usar coma o punto.</p>
 <div id="list"></div>
-<div class="btns big"><button onclick="addLoad('p')">⬇ Peso en un punto</button><button onclick="addLoad('q')">▭ Carga repartida</button><button onclick="addLoad('m')">↻ Giro (momento)</button></div><p class="mut">Punto: una máquina o una persona. Repartida: una pared o el peso de una chapa. Giro: un par que intenta hacer girar la viga.</p>
+<div class="btns big"><button onclick="addLoad('p')">+ Peso en un punto</button><button onclick="addLoad('q')">+ Carga repartida</button><button onclick="addLoad('m')">+ Giro (momento)</button></div><p class="mut">Punto: una máquina o una persona. Repartida: una pared o el peso de una chapa. Giro: un par que intenta hacer girar la viga.</p>
 </section>
 
-<h2 style="margin-top:1em">✅ Paso 3: Calcular</h2><div class="btns"><button class="p" id="go">Calcular</button><button id="clr">Limpiar</button></div><p class="mut" style="margin-top:12px">¿No sabés por dónde empezar? Probá un ejemplo:</p><div class="btns"><button onclick="ejemplo(0)">Carga al centro</button><button onclick="ejemplo(1)">Carga repartida</button><button onclick="ejemplo(2)">Voladizo</button></div>
+<h2 style="margin-top:1em">3 · Calcular</h2><div class="btns"><button class="p" id="go">Calcular</button><button id="clr">Limpiar</button></div><p class="mut" style="margin-top:12px">¿No sabés por dónde empezar? Probá un ejemplo:</p><div class="btns"><button onclick="ejemplo(0)">Carga al centro</button><button onclick="ejemplo(1)">Carga repartida</button><button onclick="ejemplo(2)">Voladizo</button><button onclick="ejemplo(3)">Con ángulo y repartida (N)</button></div>
 <div id="err" hidden></div>
 
 <section id="res" class="card" hidden>
 <div id="out"></div>
-<div class="cw"><div id="cvw"><canvas id="cv"></canvas></div></div><label style="margin-top:8px">🔎 Mové el deslizador (o tocá el gráfico) para ver V y M en cualquier punto<input type="range" id="pr" min="0" max="1" step="0.002" value="0.5"></label><div id="pt" class="ok"></div>
-<details><summary>📖 ¿Qué significa cada cosa? + Convención de signos</summary><ul><li><b>Reacción</b>: la fuerza con que el apoyo “le contesta” a las cargas para que la viga no se mueva.</li><li><b>Corte V</b>: cuánto tiende a deslizarse una parte de la viga respecto de la otra.</li><li><b>Momento M</b>: cuánto tiende a doblarse la viga en ese punto. Es el dato clave para elegir el perfil.</li></ul><p><b>Convención de signos:</b></p>
+<div class="cw"><div id="cvw"><canvas id="cv"></canvas></div></div><label style="margin-top:8px">Mové el deslizador (o tocá el gráfico) para ver V y M en cualquier punto<input type="range" id="pr" min="0" max="1" step="0.002" value="0.5"></label><div id="pt" class="ok"></div><details open style="margin-top:10px"><summary>Resolución paso a paso (como en la carpeta)</summary><div id="pasos"></div></details>
+<details><summary>¿Qué significa cada cosa? + Convención de signos</summary><ul><li><b>Reacción</b>: la fuerza con que el apoyo “le contesta” a las cargas para que la viga no se mueva.</li><li><b>Corte V</b>: cuánto tiende a deslizarse una parte de la viga respecto de la otra.</li><li><b>Momento M</b>: cuánto tiende a doblarse la viga en ese punto. Es el dato clave para elegir el perfil.</li></ul><p><b>Convención de signos:</b></p>
 <ul>
 <li>x se mide desde el extremo izquierdo, positivo hacia la derecha.</li>
 <li>Cargas y reacciones: positivas hacia arriba en las reacciones (↑) y hacia abajo en las cargas (↓).</li>
@@ -65,13 +82,13 @@ details{font-size:.92rem}summary{cursor:pointer;font-weight:600}
 <script>
 const $=id=>document.getElementById(id),num=s=>{s=String(s).trim().replace(',','.');return s===''?NaN:Number(s)};
 const fmt=(n,d=2)=>(Math.abs(n)<5e-10?0:n).toFixed(d).replace('.',',');
-const T={p:'Puntual',q:'Distribuida uniforme',m:'Momento aplicado'};let LAST=null,PX=null;
+const T={p:'Puntual',q:'Distribuida uniforme',m:'Momento aplicado'};let LAST=null,PX=null;const U=()=>$('un').value;
 const inp=(n,l,v='')=>`<label>${l}<input name="${n}" inputmode="decimal" value="${v}"></label>`;
 function addLoad(t,a=[]){
  const d=document.createElement('div');d.className='ld';d.dataset.t=t;
- d.innerHTML=`<h3>${T[t]}</h3>`+(t=='p'?inp('v','Valor (↓ +)',a[0])+'<label>Unidad<select name="u"><option>kN<option>N</select></label>'+inp('x','Posición (m)',a[1])+inp('a','Ángulo (°)',a[2]||'90'):
- t=='q'?inp('v','Valor (kN/m)',a[0])+inp('x1','Desde x (m)',a[1])+inp('x2','Hasta x (m)',a[2]):
- inp('v','Valor (kN·m)',a[0])+inp('x','Posición (m)',a[1]))+'<button class="del" aria-label="Borrar carga" onclick="this.parentNode.remove();run(true)">✕</button>';
+ d.innerHTML=`<h3>${T[t]}</h3>`+(t=='p'?inp('v','Fuerza F (↓ es +)',a[0])+inp('x','Posición (m)',a[1])+inp('a','Ángulo (°)',a[2]||'90'):
+ t=='q'?inp('v','Carga q (fuerza por metro)',a[0])+inp('x1','Desde x (m)',a[1])+inp('x2','Hasta x (m)',a[2]):
+ inp('v','Momento (fuerza × metro)',a[0])+inp('x','Posición (m)',a[1]))+'<button class="del" aria-label="Borrar carga" onclick="this.parentNode.remove();run(true)">✕</button>';
  $('list').appendChild(d)}
 function sync(){const v=$('tipo').value=='vo';$('wb').style.display=v?'none':'';$('la').textContent=v?'Empotramiento: ¿en 0 (izquierda) o en el largo total (derecha)? (m)':'Apoyo A (fijo): ¿a cuántos m del borde izquierdo?'}
 $('tipo').onchange=sync;
@@ -94,7 +111,7 @@ function read(){
   const x=g('x');
   if(isNaN(x)){e.push(nm+': falta la posición.');return}
   if(!inb(x)){e.push(nm+': está fuera de la viga (0 a '+fmt(L)+' m).');return}
-  if(t=='p'){const F=v*(d.querySelector('[name=u]').value=='N'?.001:1),an=g('a');if(isNaN(an)){e.push(nm+': falta el ángulo (90° = vertical hacia abajo).');return}const r=an*Math.PI/180;P.push({x,F,an,f:F*Math.sin(r),h:F*Math.cos(r)})}else Mo.push({x,M:v})});
+  if(t=='p'){const F=v,an=g('a');if(isNaN(an)){e.push(nm+': falta el ángulo (90° = vertical hacia abajo).');return}const r=an*Math.PI/180;P.push({x,F,an,f:F*Math.sin(r),h:F*Math.cos(r)})}else Mo.push({x,M:v})});
  if(!e.length&&!P.length&&!Q.length&&!Mo.length)e.push('Agregá al menos una carga.');
  return{e,L,tipo,xa,xb,P,Q,Mo}}
 function solve(m){
@@ -126,13 +143,13 @@ function solve(m){
 function show(s){
  const ar=v=>v>=0?'↑':'↓',row=(a,b)=>`<tr><td>${a}</td><td>${b}</td></tr>`;
  const a0=Math.abs(s.Vp.V)>=Math.abs(s.Vn.V)?s.Vp:s.Vn,mm=Math.abs(s.Mp.M)>=Math.abs(s.Mn.M)?s.Mp:s.Mn;
- let h='<h2>📊 Resultados</h2><div class="ok" style="margin:0 0 10px"><b>En palabras simples:</b><br>• '+(s.tipo=='sa'?'Los apoyos sostienen la viga: A empuja hacia arriba con '+fmt(s.R[0].v)+' kN y B con '+fmt(s.R[1].v)+' kN.':'La pared sostiene la viga con una fuerza de '+fmt(s.R[0].v)+' kN y un momento de '+fmt(Math.abs(s.rm))+' kN·m.')+'<br>• El <b>corte</b> es la fuerza que intenta “cortar” la viga: llega a '+fmt(Math.abs(a0.V))+' kN en x = '+fmt(a0.x)+' m.<br>• El <b>momento flector</b> es lo que intenta doblarla: el máximo es '+fmt(Math.abs(mm.M))+' kN·m en x = '+fmt(mm.x)+' m. <b>Ahí está el punto más exigido</b>, donde más riesgo hay de que falle.</div><table><tr><th colspan="2">Reacciones de apoyo</th></tr>';
+ let h='<h2>Resultados</h2><div class="ok" style="margin:0 0 10px"><b>En palabras simples:</b><br>• '+(s.tipo=='sa'?'Los apoyos sostienen la viga: A empuja hacia arriba con '+fmt(s.R[0].v)+' kN y B con '+fmt(s.R[1].v)+' kN.':'La pared sostiene la viga con una fuerza de '+fmt(s.R[0].v)+' kN y un momento de '+fmt(Math.abs(s.rm))+' kN·m.')+'<br>• El <b>corte</b> es la fuerza que intenta “cortar” la viga: llega a '+fmt(Math.abs(a0.V))+' kN en x = '+fmt(a0.x)+' m.<br>• El <b>momento flector</b> es lo que intenta doblarla: el máximo es '+fmt(Math.abs(mm.M))+' kN·m en x = '+fmt(mm.x)+' m. <b>Ahí está el punto más exigido</b>, donde más riesgo hay de que falle.</div><table><tr><th colspan="2">Reacciones de apoyo</th></tr>';
  s.R.forEach(r=>h+=row(`${r.n} (x = ${fmt(r.x)} m)`,`${fmt(r.v)} kN ${ar(r.v)}`));
  if(Math.abs(s.H)>1e-9)h+=row(`Ha (horizontal, x = ${fmt(s.xa)} m)`,`${fmt(Math.abs(s.H))} kN ${s.H>=0?'→':'←'}`);
  if(s.tipo=='vo')h+=row('Mr (momento de empotramiento)',`${fmt(Math.abs(s.rm))} kN·m ${s.rm>=0?'↺ antihorario':'↻ horario'}`);
  h+='</table>';
  if(s.tipo=='sa'){const b=s.R[1].v;
-  h+=`<p class="eq">📐 Paso a paso: tomamos momentos respecto de A (así Ra no molesta). ΣM<sub>A</sub> = 0 → Rb = ${fmt(s.mom)} / ${fmt(s.xb-s.xa)} = ${fmt(b)} kN<br>ΣFy = 0 → Ra = ${fmt(s.tot)} − ${fmt(b)} = ${fmt(s.R[0].v)} kN</p>`}
+  h+=`<p class="eq">Paso a paso: tomamos momentos respecto de A (así Ra no molesta). ΣM<sub>A</sub> = 0 → Rb = ${fmt(s.mom)} / ${fmt(s.xb-s.xa)} = ${fmt(b)} kN<br>ΣFy = 0 → Ra = ${fmt(s.tot)} − ${fmt(b)} = ${fmt(s.R[0].v)} kN</p>`}
  else h+=`<p class="eq">ΣFy = 0 → Ry = ${fmt(s.tot)} kN<br>ΣM = 0 → Mr = ${fmt(s.mom)} kN·m</p>`;
  const av=Math.abs(s.Vp.V)>=Math.abs(s.Vn.V)?s.Vp:s.Vn;
  h+='<table><tr><th colspan="2">Valores máximos</th></tr>'+
@@ -141,8 +158,8 @@ function show(s){
   row('M mínimo (−)',`${fmt(s.Mn.M)} kN·m en x = ${fmt(s.Mn.x)} m`)+'</table>';
  const ok=Math.abs(s.sF)<s.tol&&Math.abs(s.sM)<s.tol&&Math.abs(s.end[0])<s.tol&&Math.abs(s.end[1])<s.tol;
  h+='<table><tr><th colspan="2">Verificación del equilibrio</th></tr>'+row('ΣFy (reacciones − cargas)',fmt(s.sF,6)+' kN')+row('ΣM respecto de x = 0',fmt(s.sM,6)+' kN·m')+row('V y M al final de la viga',fmt(s.end[0],6)+' kN / '+fmt(s.end[1],6)+' kN·m')+'</table>'+
-  `<div class="ok">${ok?'✔ El equilibrio cierra (error ≈ 0).':'⚠ El equilibrio no cierra, revisá los datos.'}</div>`;
- $('out').innerHTML=h}
+  `<div class="ok">${ok?'El equilibrio cierra (error ≈ 0).':'Atención: el equilibrio no cierra, revisá los datos.'}</div>`;
+ $('out').innerHTML=h.replace(/kN/g,U())}
 function draw(m){
  const cv=$('cv'),W=Math.max(300,$('cvw').parentNode.clientWidth-2),H=670,dpr=devicePixelRatio||1;
  cv.width=W*dpr;cv.height=H*dpr;cv.style.width=W+'px';cv.style.height=H+'px';
@@ -150,7 +167,7 @@ function draw(m){
  const css=getComputedStyle(document.documentElement),col=n=>css.getPropertyValue(n).trim();
  const fg=col('--fg'),mut=col('--mut'),ln=col('--line'),acc=col('--acc'),red=col('--red'),grn=col('--grn'),F0='12px system-ui,sans-serif',or='#d98200';
  const ml=50,mr=22,X=x=>ml+x/m.L*(W-ml-mr),by=112,sc=235,vH=200,mH=235;
- const txt=(s,x,y,co=fg,al='center',f=F0)=>{c.fillStyle=co;c.textAlign=al;c.font=f;c.fillText(s,x,y)};
+ const txt=(s,x,y,co=fg,al='center',f=F0)=>{c.fillStyle=co;c.textAlign=al;c.font=f;c.fillText(String(s).replace(/kN/g,U()),x,y)};
  const ar=(x1,y1,x2,y2,co)=>{c.strokeStyle=co;c.fillStyle=co;c.lineWidth=2;c.beginPath();c.moveTo(x1,y1);c.lineTo(x2,y2);c.stroke();const a=Math.atan2(y2-y1,x2-x1);c.beginPath();c.moveTo(x2,y2);c.lineTo(x2-9*Math.cos(a-.4),y2-9*Math.sin(a-.4));c.lineTo(x2-9*Math.cos(a+.4),y2-9*Math.sin(a+.4));c.fill()};
  const arc=(cx,cy,r,cw,co)=>{const t0=-Math.PI*.9,t1=Math.PI*.1;c.strokeStyle=co;c.lineWidth=2;c.beginPath();c.arc(cx,cy,r,t0,t1);c.stroke();
   const t=cw?t1:t0,px=cx+r*Math.cos(t),py=cy+r*Math.sin(t),d=cw?[-Math.sin(t),Math.cos(t)]:[Math.sin(t),-Math.cos(t)];
@@ -201,17 +218,52 @@ function draw(m){
 function run(live){
  const m=read(),eb=$('err'),res=$('res');
  if(m.e.length){if(live)return;eb.innerHTML='<b>Revisá los datos:</b><ul>'+m.e.map(s=>'<li>'+s+'</li>').join('')+'</ul>';eb.hidden=false;res.hidden=true;return}
- eb.hidden=true;res.hidden=false;LAST=solve(m);if(PX==null||PX>LAST.L)PX=LAST.L/2;$('pr').value=PX/LAST.L;show(LAST);draw(LAST);probe()}
-function ejemplo(n=0){const E=[['6','sa','0','6',[['p',['10','3']]]],['6','sa','0','6',[['q',['4','0','6']]]],['3','vo','0','',[['p',['5','3']]]]][n];$('L').value=E[0];$('tipo').value=E[1];sync();$('xa').value=E[2];$('xb').value=E[3];$('list').innerHTML='';E[4].forEach(l=>addLoad(...l));run()}
+ eb.hidden=true;res.hidden=false;LAST=solve(m);if(PX==null||PX>LAST.L)PX=LAST.L/2;$('pr').value=PX/LAST.L;show(LAST);pasos(LAST);draw(LAST);probe()}
+function ejemplo(n=0){const E=[['6','sa','0','6',[['p',['10','3']]]],['6','sa','0','6',[['q',['4','0','6']]]],['3','vo','0','',[['p',['5','3']]]],['6','sa','0','6',[['p',['170','1.5','42']],['q',['185','2','4.5']],['p',['245','5']]],'N']][n];$('un').value=E[5]||'kN';$('L').value=E[0];$('tipo').value=E[1];sync();$('xa').value=E[2];$('xb').value=E[3];$('list').innerHTML='';E[4].forEach(l=>addLoad(...l));run()}
 $('go').onclick=()=>run();
 $('clr').onclick=()=>{['L','xa','xb'].forEach(i=>$(i).value='');$('list').innerHTML='';$('err').hidden=true;$('res').hidden=true;LAST=null};
-function probe(){if(!LAST)return;const x=PX==null?LAST.L/2:PX,r=LAST.ev(x,true);$('pt').innerHTML=`📍 En x = <b>${fmt(x)} m</b>: corte V = <b>${fmt(r[0])} kN</b>, momento M = <b>${fmt(r[1])} kN·m</b>`}
+function pasos(s){
+ const f=fmt,ab=Math.abs,E=1e-9,ang=a=>String(+a.toFixed(2)).replace('.',','),xm=d=>ab(d)<E?'x':`(x − ${f(d)})`,
+ T=(v,t='')=>(v<0?'− ':'+ ')+f(ab(v))+t,J=a=>a.filter(Boolean).join(' ').replace(/^\+ /,'')||'0',
+ Mt=(a,b)=>ab(a*b)<E?'':((a*b<0?'− ':'+ ')+f(ab(a))+'·'+f(ab(b))),
+ {P,Q,Mo,R,rm,tipo,xa,xb,tot,mom}=s,Wq=q=>q.w*(q.x2-q.x1),cq=q=>(q.x1+q.x2)/2;
+ let h='<div class="st">① Descomponer las cargas inclinadas</div>';
+ const inc=P.map((p,i)=>[p,i]).filter(([p])=>ab(p.an-90)>E||ab(p.h)>E);
+ h+=inc.length?inc.map(([p,i])=>`<p class="eq">Carga ${i+1}: F = ${f(p.F)} kN, ángulo θ = ${ang(p.an)}°<br>Fx${i+1} = F·cos(θ) = ${f(p.F)}·cos(${ang(p.an)}°) = ${f(p.h)} kN ${p.h>=0?'→':'←'}<br>Fy${i+1} = F·sen(θ) = ${f(p.F)}·sen(${ang(p.an)}°) = ${f(p.f)} kN ${p.f>=0?'↓':'↑'}</p>`).join(''):'<p class="eq">No hay cargas inclinadas: cada fuerza es vertical (Fy = F, Fx = 0).</p>';
+ h+='<div class="st">② Resultante de las cargas repartidas</div>';
+ h+=Q.length?Q.map((q,j)=>{const l=q.x2-q.x1;return `<p class="eq">Q${j+1} = q·L = ${f(q.w)}·${f(l)} = ${f(Wq(q))} kN<br>Actúa en el medio del tramo: ${f(l)} / 2 = ${f(l/2)} m desde donde empieza → x = ${f(cq(q))} m</p>`}).join(''):'<p class="eq">No hay cargas repartidas.</p>';
+ h+='<div class="st">③ Ecuaciones de equilibrio</div>';
+ const fxs=P.filter(p=>ab(p.h)>E),sh=P.reduce((a,p)=>a+p.h,0);
+ h+=fxs.length?`<p class="eq">ΣFx = 0 → ${J(fxs.map(p=>T(p.h)))} − RAx = 0 → RAx = ${f(ab(sh))} kN ${sh>=0?'←':'→'}</p>`:'<p class="eq">ΣFx = 0 → no hay fuerzas horizontales → RAx = 0</p>';
+ const mts=[...P.map(p=>Mt(-p.f,p.x-xa)),...Q.map(q=>Mt(-Wq(q),cq(q)-xa)),...Mo.map(o=>ab(o.M)<E?'':T(-o.M))];
+ const fy=[...P.map(p=>T(p.f)),...Q.map(q=>T(Wq(q)))];
+ if(tipo=='sa'){const d=xb-xa,Ra=R[0].v,Rb=R[1].v;
+  h+=`<p class="eq">ΣM<sub>A</sub> = 0 (momentos respecto de A, x = ${f(xa)} m; giro ↺ positivo):<br>${J(mts)} + RBy·${f(d)} = 0<br>${f(-mom)} + RBy·${f(d)} = 0 → RBy·${f(d)} = ${f(mom)}<br>RBy = ${f(mom)} / ${f(d)} = <b>${f(Rb)} kN ${Rb>=0?'↑':'↓'}</b></p>`;
+  h+=`<p class="eq">ΣFy = 0 → ${J(fy)} − RAy − RBy = 0<br>Reemplazamos RBy = ${f(Rb)}:<br>${f(tot)} − RAy − ${f(Rb)} = 0 → RAy = ${f(tot)} − ${f(Rb)} = <b>${f(Ra)} kN ${Ra>=0?'↑':'↓'}</b></p>`}
+ else h+=`<p class="eq">ΣFy = 0 → ${J(fy)} − Ry = 0 → Ry = ${f(tot)} kN ↑<br>ΣM (en el empotramiento) = 0 → ${J(mts)} + Mr = 0 → Mr = ${f(mom)} kN·m ${mom>=0?'↺':'↻'}</p>`;
+ h+='<div class="st">④ Cortes (método de las secciones)</div><p class="eq">Cortamos la viga a una distancia x del extremo izquierdo y miramos solo la parte de la izquierda. V = suma de las fuerzas verticales (↑ +). M = suma de los momentos de esas fuerzas respecto del corte (positivo si la viga se curva hacia arriba). Si tu carpeta usa el signo contrario para M, los valores son iguales pero con signo opuesto.</p>';
+ const bp=s.bp;
+ for(let i=0;i<bp.length-1;i++){const a=bp[i],b=bp[i+1];
+  const Rl=R.filter(r=>r.x<=a+E),Pl=P.filter(p=>p.x<=a+E),Ml=Mo.filter(o=>o.x<=a+E),Ql=Q.filter(q=>q.x1<=a+E);
+  const V=[...Rl.map(r=>T(r.v)),...Pl.map(p=>T(-p.f)),...Ql.map(q=>b<=q.x2+E?T(-q.w,'·'+xm(q.x1)):T(-Wq(q)))];
+  const M=[...Rl.map(r=>T(r.v,'·'+xm(r.x))),...Pl.map(p=>T(-p.f,'·'+xm(p.x))),...Ql.map(q=>b<=q.x2+E?T(-q.w,`·${xm(q.x1)}²/2`):T(-Wq(q),'·'+xm(cq(q)))),...Ml.map(o=>T(o.M)),...(rm&&xa<=a+E?[T(-rm)]:[])];
+  const va=s.ev(a,true),vb=s.ev(b,false);
+  h+=`<p class="eq"><b>Corte ${i+1}: ${f(a)} &lt; x &lt; ${f(b)} m</b><br>V(x) = ${J(V)}<br>M(x) = ${J(M)}<br>En x = ${f(a)}: V = ${f(va[0])} kN, M = ${f(va[1])} kN·m<br>En x = ${f(b)}: V = ${f(vb[0])} kN, M = ${f(vb[1])} kN·m`;
+  s.keys.filter(k=>k>a+E&&k<b-E).forEach(k=>h+=`<br>V(x) = 0 en x = ${f(k)} m → M = ${f(s.ev(k,true)[1])} kN·m (máximo o mínimo de M)`);
+  h+='</p>'}
+ $('pasos').innerHTML=h.replace(/kN/g,U())}
+function probe(){if(!LAST)return;const x=PX==null?LAST.L/2:PX,r=LAST.ev(x,true);$('pt').innerHTML=`En x = <b>${fmt(x)} m</b>: corte V = <b>${fmt(r[0])} kN</b>, momento M = <b>${fmt(r[1])} kN·m</b>`;$('pt').innerHTML=$('pt').innerHTML.replace(/kN/g,U())}
 $('pr').oninput=()=>{if(!LAST)return;PX=$('pr').value*LAST.L;draw(LAST);probe()};
 const mv=e=>{if(!LAST||!(e.buttons||e.type=='pointerdown'))return;const r=$('cv').getBoundingClientRect();PX=Math.min(1,Math.max(0,(e.clientX-r.left-50)/(r.width-72)))*LAST.L;$('pr').value=PX/LAST.L;draw(LAST);probe()};
 $('cv').onpointerdown=mv;$('cv').onpointermove=mv;
 document.addEventListener('input',e=>{if(e.target.id!='pr')run(true)});document.addEventListener('change',e=>{if(e.target.id!='pr')run(true)});
 addEventListener('resize',()=>{if(LAST&&!$('res').hidden)draw(LAST)});
 matchMedia('(prefers-color-scheme:dark)').addEventListener('change',()=>{if(LAST&&!$('res').hidden)draw(LAST)});
+const TH=[['cuaderno','Cuaderno','#f3efe3','#1d4fa8'],['plano','Plano','#0f3a6b','#ffd54a'],['pizarra','Pizarra','#24352b','#f1f1e6'],['taller','Taller','#e6e6e2','#e8590c'],['noche','Noche','#15171a','#6db3ff']];
+function setTh(id){document.documentElement.dataset.theme=id;try{localStorage.setItem('th',id)}catch(e){}$('tm').querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.t==id));if(LAST&&!$('res').hidden)draw(LAST)}
+$('tm').innerHTML=TH.map(t=>`<button data-t="${t[0]}" title="${t[1]}" aria-label="Tema ${t[1]}" style="background:linear-gradient(135deg,${t[2]} 50%,${t[3]} 50%)"></button>`).join('');
+$('tm').onclick=e=>{const b=e.target.closest('button');if(b)setTh(b.dataset.t)};
+let t0='cuaderno';try{t0=localStorage.getItem('th')||t0}catch(e){}if(!TH.some(t=>t[0]==t0))t0='cuaderno';setTh(t0);
 sync();ejemplo();
 </script></body></html>
 </script>
