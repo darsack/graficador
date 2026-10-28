@@ -1,3 +1,4 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 <!DOCTYPE html>
 <html lang="es" data-theme="cuaderno"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -44,6 +45,33 @@ input,select,button{border-radius:3px;border:1.5px solid var(--line)}input,selec
 .ok{border-radius:3px;border-left:4px solid var(--grn)}
 #tmw{display:flex;align-items:center;gap:10px;margin:4px 0 10px;font-size:.9rem;color:var(--mut)}
 #tm{display:flex;gap:8px}#tm button{width:30px;height:30px;padding:0;border-radius:50%;border:2px solid var(--fg)}#tm button[aria-pressed=true]{outline:3px solid var(--acc);outline-offset:2px}
+main{max-width:1100px;display:flex;flex-direction:column}
+main>h1{order:-4}#tmw{order:-3}main>p:first-of-type{order:-2}main>h2{align-self:flex-start}
+#res{order:-1;display:flex;flex-direction:column}#res[hidden]{display:none}
+#res>*{order:5}#stbar{order:0!important;align-items:center;margin:0 0 10px}#res>.cw,#res>label,#res>#pt{order:1}
+canvas{cursor:grab}canvas:active{cursor:grabbing}
+.fb{display:block;width:100%;max-width:480px;height:auto;margin:2px 0 12px;border:1.5px dashed var(--line);border-radius:3px;background:var(--card)}.fb .b{stroke:var(--fg);stroke-width:5}.fb .a{fill:var(--acc);stroke:var(--acc)}.fb .r{fill:var(--grn);stroke:var(--grn)}.fb .i{fill:var(--red);stroke:var(--red)}.fb .d{stroke:var(--mut);stroke-width:1}.fb .t{fill:var(--fg);stroke:none;font:11px system-ui,sans-serif}
+:root[data-theme=river]{--bg:#fbfbfb;--card:#fff;--fg:#1a1a1a;--mut:#5a5a5a;--line:#cfcfcf;--acc:#e4002b;--red:#7a0013;--grn:#1f7a3a;--wrn:#fde3e6;--ok:#f2f2f2;--onacc:#fff;--hf:'Arial Narrow','Helvetica Neue',Arial,sans-serif;--grid:linear-gradient(135deg,transparent 40%,rgba(228,0,43,.17) 40%,rgba(228,0,43,.17) 60%,transparent 60%)}
+:root[data-theme=boca]{--bg:#0b2a6b;--card:#123a85;--fg:#fff;--mut:#c8d6f2;--line:#4f74c2;--acc:#ffc72c;--red:#9fd0ff;--grn:#7be08a;--wrn:#5a2a3a;--ok:#174a9a;--onacc:#0b2a6b;--hf:'Arial Narrow','Helvetica Neue',Arial,sans-serif;--grid:linear-gradient(transparent 38%,rgba(255,199,44,.24) 38%,rgba(255,199,44,.24) 62%,transparent 62%)}
+:root[data-theme=seleccion]{--bg:#eaf4fb;--card:#fff;--fg:#12304a;--mut:#4a6378;--line:#9bc2e2;--acc:#2a86c9;--red:#b47a00;--grn:#2b8a3e;--wrn:#fde8e6;--ok:#e3f1fa;--onacc:#fff;--hf:Georgia,serif;--grid:linear-gradient(90deg,rgba(117,170,219,.38) 50%,rgba(255,255,255,.7) 50%)}
+:root[data-theme=river] body,:root[data-theme=boca] body{background-size:100% 100%;background-attachment:fixed}
+:root[data-theme=seleccion] body{background-size:130px 100%;background-attachment:fixed}
+:root[data-theme=river] h1,:root[data-theme=river] h2,:root[data-theme=boca] h1,:root[data-theme=boca] h2{text-transform:uppercase;letter-spacing:.04em}
+:root[data-theme=minimal]{--bg:#f5f5f7;--card:#fff;--fg:#1d1d1f;--mut:#6e6e73;--line:#d2d2d7;--acc:#0071e3;--red:#bf4800;--grn:#248a3d;--wrn:#fff1ef;--ok:#f5f5f7;--onacc:#fff}
+:root[data-theme=grafito]{--bg:#000;--card:#1c1c1e;--fg:#f5f5f7;--mut:#98989d;--line:#38383a;--acc:#2997ff;--red:#ff9f0a;--grn:#30d158;--wrn:#3a1d1d;--ok:#2c2c2e;--onacc:#fff}
+:root[data-theme=minimal],:root[data-theme=grafito]{--hf:-apple-system,BlinkMacSystemFont,'SF Pro Display','Helvetica Neue',Helvetica,Arial,sans-serif;--grid:none}
+:root[data-theme=minimal] body,:root[data-theme=grafito] body{font-family:var(--hf);letter-spacing:-.011em;-webkit-font-smoothing:antialiased;background-image:none}
+:root[data-theme=minimal] h1,:root[data-theme=grafito] h1{font-size:2.7rem;font-weight:600;letter-spacing:-.037em;margin:.4em 0 .2em}
+:root[data-theme=minimal] h2,:root[data-theme=grafito] h2{border-bottom:0;font-size:1.55rem;font-weight:600;letter-spacing:-.027em}
+:root[data-theme=minimal] .card,:root[data-theme=grafito] .card{border:0;border-radius:22px;padding:24px;margin:20px 0;box-shadow:0 1px 2px rgba(0,0,0,.04),0 12px 40px rgba(0,0,0,.06)}
+:root[data-theme=grafito] .card{box-shadow:none}
+:root[data-theme=minimal] .ld,:root[data-theme=grafito] .ld{border-radius:16px;border:1px solid var(--line)}
+:root[data-theme=minimal] input,:root[data-theme=minimal] select,:root[data-theme=grafito] input,:root[data-theme=grafito] select{border:0;border-radius:12px;background:var(--bg);padding:11px 12px}
+:root[data-theme=minimal] button,:root[data-theme=grafito] button{border:0;border-radius:980px;background:var(--bg);padding:11px 20px;font-weight:500}
+:root[data-theme=minimal] button.p,:root[data-theme=grafito] button.p{background:var(--acc);color:var(--onacc)}
+:root[data-theme=minimal] .ok,:root[data-theme=grafito] .ok{border-radius:16px;border-left:0}
+:root[data-theme=minimal] td,:root[data-theme=minimal] th,:root[data-theme=grafito] td,:root[data-theme=grafito] th{padding:9px 6px}
+:root[data-theme=minimal] .mut,:root[data-theme=grafito] .mut{font-size:.95rem}
 </style></head><body><main>
 <h1>Calculadora de vigas isostáticas</h1>
 <div id="tmw"><span>Fondo:</span><div id="tm"></div></div>
@@ -58,7 +86,7 @@ input,select,button{border-radius:3px;border:1.5px solid var(--line)}input,selec
 </div></section>
 
 <section class="card"><h2>2 · ¿Qué cargas tiene?</h2>
-<p class="mut">Cargas positivas hacia abajo (↓); negativas, hacia arriba (↑). Momento aplicado positivo = horario (↻). En las puntuales, el ángulo se mide desde el eje de la viga (→) girando hacia abajo: 90° = vertical ↓ (por defecto), 0° = horizontal →, 180° = horizontal ←. Podés usar coma o punto.</p>
+<p class="mut">Cargas positivas hacia abajo (↓); negativas, hacia arriba (↑). Momento aplicado positivo = horario (↻). En las puntuales con ángulo, elegí desde dónde se mide (la viga o la vertical) y hacia qué lado apunta la fuerza (derecha o izquierda). Ángulo de 0° a 90°; 90° desde la viga = vertical hacia abajo. Podés usar coma o punto.</p>
 <div id="list"></div>
 <div class="btns big"><button onclick="addLoad('p')">+ Peso en un punto</button><button onclick="addLoad('q')">+ Carga repartida</button><button onclick="addLoad('m')">+ Giro (momento)</button></div><p class="mut">Punto: una máquina o una persona. Repartida: una pared o el peso de una chapa. Giro: un par que intenta hacer girar la viga.</p>
 </section>
@@ -67,7 +95,7 @@ input,select,button{border-radius:3px;border:1.5px solid var(--line)}input,selec
 <div id="err" hidden></div>
 
 <section id="res" class="card" hidden>
-<div id="out"></div>
+<div id="stbar" class="btns"><button id="an" class="p">Animar carga</button><button id="fs">Pantalla completa</button><button id="dfb" aria-pressed="true">Deformada: sí</button><span class="mut" style="margin:0">Arrastrá las cargas sobre la viga con el dedo o el mouse y mirá cómo cambian los diagramas.</span></div><div id="out"></div>
 <div class="cw"><div id="cvw"><canvas id="cv"></canvas></div></div><label style="margin-top:8px">Mové el deslizador (o tocá el gráfico) para ver V y M en cualquier punto<input type="range" id="pr" min="0" max="1" step="0.002" value="0.5"></label><div id="pt" class="ok"></div><details open style="margin-top:10px"><summary>Resolución paso a paso (como en la carpeta)</summary><div id="pasos"></div></details>
 <details><summary>¿Qué significa cada cosa? + Convención de signos</summary><ul><li><b>Reacción</b>: la fuerza con que el apoyo “le contesta” a las cargas para que la viga no se mueva.</li><li><b>Corte V</b>: cuánto tiende a deslizarse una parte de la viga respecto de la otra.</li><li><b>Momento M</b>: cuánto tiende a doblarse la viga en ese punto. Es el dato clave para elegir el perfil.</li></ul><p><b>Convención de signos:</b></p>
 <ul>
@@ -82,11 +110,11 @@ input,select,button{border-radius:3px;border:1.5px solid var(--line)}input,selec
 <script>
 const $=id=>document.getElementById(id),num=s=>{s=String(s).trim().replace(',','.');return s===''?NaN:Number(s)};
 const fmt=(n,d=2)=>(Math.abs(n)<5e-10?0:n).toFixed(d).replace('.',',');
-const T={p:'Puntual',q:'Distribuida uniforme',m:'Momento aplicado'};let LAST=null,PX=null;const U=()=>$('un').value;
+const T={p:'Puntual',q:'Distribuida uniforme',m:'Momento aplicado'};let LAST=null,PX=null,AN=0,DR=null,DF=true;const U=()=>$('un').value;
 const inp=(n,l,v='')=>`<label>${l}<input name="${n}" inputmode="decimal" value="${v}"></label>`;
 function addLoad(t,a=[]){
  const d=document.createElement('div');d.className='ld';d.dataset.t=t;
- d.innerHTML=`<h3>${T[t]}</h3>`+(t=='p'?inp('v','Fuerza F (↓ es +)',a[0])+inp('x','Posición (m)',a[1])+inp('a','Ángulo (°)',a[2]||'90'):
+ d.innerHTML=`<h3>${T[t]}</h3>`+(t=='p'?inp('v','Fuerza F (↓ es +)',a[0])+inp('x','Posición (m)',a[1])+inp('a','Ángulo (°)',a[2]||'90')+'<label>Ángulo medido desde<select name="ref"><option value="h">la viga (horizontal)</option><option value="v">la vertical</option></select></label><label>La fuerza apunta hacia<select name="dir"><option value="d">la derecha →</option><option value="i">la izquierda ←</option></select></label>':
  t=='q'?inp('v','Carga q (fuerza por metro)',a[0])+inp('x1','Desde x (m)',a[1])+inp('x2','Hasta x (m)',a[2]):
  inp('v','Momento (fuerza × metro)',a[0])+inp('x','Posición (m)',a[1]))+'<button class="del" aria-label="Borrar carga" onclick="this.parentNode.remove();run(true)">✕</button>';
  $('list').appendChild(d)}
@@ -107,11 +135,11 @@ function read(){
    if(isNaN(a)||isNaN(b)){e.push(nm+': completá la posición inicial y la final.');return}
    if(a>=b){e.push(nm+': la posición inicial tiene que ser menor que la final.');return}
    if(!inb(a)||!inb(b)){e.push(nm+': queda fuera de la viga (0 a '+fmt(L)+' m).');return}
-   Q.push({x1:a,x2:b,w:v});return}
+   Q.push({x1:a,x2:b,w:v,d});return}
   const x=g('x');
   if(isNaN(x)){e.push(nm+': falta la posición.');return}
   if(!inb(x)){e.push(nm+': está fuera de la viga (0 a '+fmt(L)+' m).');return}
-  if(t=='p'){const F=v,an=g('a');if(isNaN(an)){e.push(nm+': falta el ángulo (90° = vertical hacia abajo).');return}const r=an*Math.PI/180;P.push({x,F,an,f:F*Math.sin(r),h:F*Math.cos(r)})}else Mo.push({x,M:v})});
+  if(t=='p'){const F=v,an=g('a');if(isNaN(an)){e.push(nm+': falta el ángulo.');return}if(an<0||an>90){e.push(nm+': el ángulo tiene que estar entre 0° y 90°. Para el otro lado usá "hacia la izquierda".');return}const rf=d.querySelector('[name=ref]').value,dir=d.querySelector('[name=dir]').value=='i'?-1:1,tr=rf=='v'?90-an:an,r=tr*Math.PI/180;P.push({x,F,an:dir>0?tr:180-tr,th:an,rf,dir,f:F*Math.sin(r),h:dir*F*Math.cos(r),d})}else Mo.push({x,M:v,d})});
  if(!e.length&&!P.length&&!Q.length&&!Mo.length)e.push('Agregá al menos una carga.');
  return{e,L,tipo,xa,xb,P,Q,Mo}}
 function solve(m){
@@ -175,11 +203,13 @@ function draw(m){
  c.clearRect(0,0,W,H);
  c.setLineDash([4,4]);c.strokeStyle=ln;c.lineWidth=1;
  m.bp.forEach(x=>{c.beginPath();c.moveTo(X(x),sc);c.lineTo(X(x),sc+vH+mH-22);c.stroke()});c.setLineDash([]);
- txt('Esquema de la viga',ml,16,fg,'left','bold 13px system-ui,sans-serif');
- c.strokeStyle=fg;c.lineWidth=6;c.beginPath();c.moveTo(X(0),by);c.lineTo(X(m.L),by);c.stroke();
+ txt(DF?'Esquema de la viga y su deformada (exagerada)':'Esquema de la viga',ml,16,fg,'left','bold 13px system-ui,sans-serif');
+ const Yn=defl(m),am=DF&&m.pts.some(p=>Math.abs(p.M)>1e-9)?24:0;
+ c.setLineDash([3,4]);c.strokeStyle=mut;c.lineWidth=1;c.beginPath();c.moveTo(X(0),by);c.lineTo(X(m.L),by);c.stroke();c.setLineDash([]);
+ c.strokeStyle=fg;c.lineWidth=6;c.lineJoin='round';c.beginPath();m.pts.forEach((p,i)=>{const qx=X(p.x),qy=by-Yn[i]*am;i?c.lineTo(qx,qy):c.moveTo(qx,qy)});c.stroke();
  m.P.forEach(p=>{const x=X(p.x),s=p.F>=0?1:-1,dx=s*Math.cos(p.an*Math.PI/180),dy=s*Math.sin(p.an*Math.PI/180),L2=54;let fx,fy;
   if(dy>=-1e-9){fx=x-dx*L2;fy=by-8-dy*L2;ar(fx,fy,x,by-8,acc)}else{fx=x+dx*L2;fy=by-8+dy*L2;ar(x,by-8,fx,fy,acc)}
-  const an=Math.abs(p.an-90)>1e-9?' ∠'+String(+p.an.toFixed(1)).replace('.',',')+'°':'';
+  const an=Math.abs(p.an-90)>1e-9?' ∠'+String(+p.th.toFixed(1)).replace('.',',')+'°'+(p.rf=='v'?' (de la vertical)':''):'';
   txt(fmt(Math.abs(p.F))+' kN'+an,Math.min(Math.max(fx,45),W-45),fy-6,acc)});
  m.Q.forEach(q=>{const a=X(q.x1),b=X(q.x2),n=Math.max(2,Math.round((b-a)/18));c.strokeStyle=acc;c.lineWidth=2;c.beginPath();c.moveTo(a,by-44);c.lineTo(b,by-44);c.stroke();
   for(let i=0;i<=n;i++){const x=a+(b-a)*i/n;q.w>=0?ar(x,by-44,x,by-8,acc):ar(x,by-8,x,by-44,acc)}
@@ -196,9 +226,13 @@ function draw(m){
   const cx=x-s*38;arc(cx,by+56,15,m.rm<0,red);txt(`Mr = ${fmt(Math.abs(m.rm))} kN·m`,Math.min(Math.max(cx,60),W-60),by+108,red)}
  if(Math.abs(m.H)>1e-9)txt('Ha = '+fmt(Math.abs(m.H))+' kN '+(m.H>=0?'→':'←'),Math.min(Math.max(X(m.xa),45),W-45),by+(m.tipo=='sa'?114:126),grn);
  const plot=(y0,h,k,ttl,co)=>{
-  const top=y0+36,bot=y0+h-(k=='M'?38:18);let lo=0,hi=0;m.pts.forEach(p=>{lo=Math.min(lo,p[k]);hi=Math.max(hi,p[k])});
+  const top=y0+(k=='M'?54:36),bot=y0+h-(k=='M'?38:18);let lo=0,hi=0;m.pts.forEach(p=>{lo=Math.min(lo,p[k]);hi=Math.max(hi,p[k])});
   if(hi-lo<1e-9){hi=1;lo=-1}const pd=(hi-lo)*.1;if(hi>0)hi+=pd;if(lo<0)lo-=pd;
   const Y=v=>bot-(v-lo)/(hi-lo)*(bot-top),z=Y(0);
+  m.bp.forEach((a,i)=>{if(i%2||i>=m.bp.length-1)return;c.globalAlpha=.07;c.fillStyle=fg;c.fillRect(X(a),y0+22,X(m.bp[i+1])-X(a),h-44);c.globalAlpha=1});
+  if(k=='M')m.bp.forEach((a,i)=>{if(i>=m.bp.length-1)return;const b=m.bp[i+1],w=X(b)-X(a),cx=(X(a)+X(b))/2;
+   if(w>26)txt(w>70?'Corte '+(i+1):'C'+(i+1),cx,y0+34,mut,'center','bold 12px system-ui,sans-serif');
+   if(w>90)txt(fmt(a)+' – '+fmt(b)+' m',cx,y0+47,mut,'center','10px system-ui,sans-serif')});
   txt(ttl,ml,y0+16,fg,'left','bold 13px system-ui,sans-serif');
   c.strokeStyle=mut;c.lineWidth=1;c.beginPath();c.moveTo(ml,top-10);c.lineTo(ml,bot+4);c.moveTo(ml,z);c.lineTo(W-mr,z);c.stroke();
   txt('0',ml-6,z+4,mut,'right');
@@ -218,10 +252,31 @@ function draw(m){
 function run(live){
  const m=read(),eb=$('err'),res=$('res');
  if(m.e.length){if(live)return;eb.innerHTML='<b>Revisá los datos:</b><ul>'+m.e.map(s=>'<li>'+s+'</li>').join('')+'</ul>';eb.hidden=false;res.hidden=true;return}
- eb.hidden=true;res.hidden=false;LAST=solve(m);if(PX==null||PX>LAST.L)PX=LAST.L/2;$('pr').value=PX/LAST.L;show(LAST);pasos(LAST);draw(LAST);probe()}
+ eb.hidden=true;res.hidden=false;LAST=solve(m);if(PX==null||PX>LAST.L)PX=LAST.L/2;$('pr').value=PX/LAST.L;if(!AN&&!DR){show(LAST);pasos(LAST)}draw(LAST);probe()}
 function ejemplo(n=0){const E=[['6','sa','0','6',[['p',['10','3']]]],['6','sa','0','6',[['q',['4','0','6']]]],['3','vo','0','',[['p',['5','3']]]],['6','sa','0','6',[['p',['170','1.5','42']],['q',['185','2','4.5']],['p',['245','5']]],'N']][n];$('un').value=E[5]||'kN';$('L').value=E[0];$('tipo').value=E[1];sync();$('xa').value=E[2];$('xb').value=E[3];$('list').innerHTML='';E[4].forEach(l=>addLoad(...l));run()}
 $('go').onclick=()=>run();
 $('clr').onclick=()=>{['L','xa','xb'].forEach(i=>$(i).value='');$('list').innerHTML='';$('err').hidden=true;$('res').hidden=true;LAST=null};
+function defl(m){const p=m.pts,th=[0],y=[0];for(let i=1;i<p.length;i++){const dx=p[i].x-p[i-1].x;th[i]=th[i-1]+(p[i].M+p[i-1].M)/2*dx;y[i]=y[i-1]+(th[i]+th[i-1])/2*dx}
+ const k=p.findIndex(q=>Math.abs(q.x-m.xa)<1e-9);let c1;
+ if(m.tipo=='sa'){const j=p.findIndex(q=>Math.abs(q.x-m.xb)<1e-9);c1=-(y[j]-y[k])/(m.xb-m.xa)}else c1=-th[k];
+ const c2=-y[k]-c1*m.xa,Y=y.map((v,i)=>v+c1*p[i].x+c2),mx=Math.max(1e-9,...Y.map(Math.abs));return Y.map(v=>v/mx)}
+function fbd(s,a,b,Rl,Pl,Ml,Ql,n){
+ const W=440,x0=30,x1=W-60,sc=(x1-x0)/b,X=x=>x0+x*sc,by=62,f=fmt,E=1e-9;let g='';
+ const tx=(x,y,t,st='')=>`<text class="t" x="${x}" y="${y}" text-anchor="${x<70?'start':x>W-70?'end':'middle'}" style="${st}">${t}</text>`;
+ const ar=(x,y1,y2,k)=>`<path class="${k}" stroke-width="2" d="M${x} ${y1}L${x} ${y2}"/><path class="${k}" d="M${x} ${y2}l-4 ${y2>y1?-8:8}l8 0z"/>`;
+ g+=tx(6,13,'Corte '+n+': parte izquierda hasta el corte (x)','font-weight:700');
+ g+=`<line class="b" x1="${X(0)}" y1="${by}" x2="${X(b)}" y2="${by}"/><line class="d" stroke-dasharray="3 3" x1="${X(b)}" y1="${by-56}" x2="${X(b)}" y2="${by+44}"/>`;
+ Rl.forEach(r=>{g+=ar(X(r.x),by+46,by+8,'r')+tx(X(r.x),by+58,`${r.n} = ${f(r.v)} kN`)});
+ Pl.forEach(p=>{g+=ar(X(p.x),by-46,by-8,'a')+tx(X(p.x),by-50,`${f(p.f)} kN`)});
+ Ql.forEach(q=>{const e=Math.min(b,q.x2),p1=X(q.x1),p2=X(e),k=Math.max(2,Math.round((p2-p1)/16));g+=`<line class="a" stroke-width="2" x1="${p1}" y1="${by-34}" x2="${p2}" y2="${by-34}"/>`;for(let i=0;i<=k;i++)g+=ar(p1+(p2-p1)*i/k,by-34,by-8,'a');g+=tx((p1+p2)/2,by-40,`q = ${f(q.w)} kN/m`)});
+ Ml.forEach(o=>{g+=tx(X(o.x),by-18,`M = ${f(o.M)} kN·m ${o.M>=0?'↻':'↺'}`)});
+ if(s.rm&&s.xa<=a+E)g+=tx(X(s.xa),by+72,`Mr = ${f(Math.abs(s.rm))} kN·m ${s.rm>=0?'↺':'↻'}`);
+ const cx=X(b);
+ g+=ar(cx,by-46,by-10,'i')+tx(cx,by-50,'V')+`<path class="i" style="fill:none" stroke-width="2" d="M${cx} ${by-18}A18 18 0 0 0 ${cx} ${by+18}"/><path class="i" d="M${cx} ${by+18}l-7 -5l0 10z"/>`+tx(cx+24,by+4,'M');
+ const xs=[...new Set([0,...Rl.map(r=>r.x),...Pl.map(p=>p.x),...Ml.map(o=>o.x),...Ql.map(q=>q.x1)])].sort((p,q)=>p-q);let last=-99;
+ g+=`<line class="d" x1="${X(0)}" y1="${by+84}" x2="${X(b)}" y2="${by+84}"/>`;
+ xs.concat([b]).forEach(x=>{const px=X(x);g+=`<line class="d" x1="${px}" y1="${by+80}" x2="${px}" y2="${by+88}"/>`;if(px-last>30||x==b){g+=tx(px,by+100,x==b?'x':f(x));last=px}});
+ return `<svg class="fb" viewBox="0 0 ${W} 170" role="img" aria-label="Diagrama de cuerpo libre del corte ${n}">${g}</svg>`}
 function pasos(s){
  const f=fmt,ab=Math.abs,E=1e-9,ang=a=>String(+a.toFixed(2)).replace('.',','),xm=d=>ab(d)<E?'x':`(x − ${f(d)})`,
  T=(v,t='')=>(v<0?'− ':'+ ')+f(ab(v))+t,J=a=>a.filter(Boolean).join(' ').replace(/^\+ /,'')||'0',
@@ -229,7 +284,7 @@ function pasos(s){
  {P,Q,Mo,R,rm,tipo,xa,xb,tot,mom}=s,Wq=q=>q.w*(q.x2-q.x1),cq=q=>(q.x1+q.x2)/2;
  let h='<div class="st">① Descomponer las cargas inclinadas</div>';
  const inc=P.map((p,i)=>[p,i]).filter(([p])=>ab(p.an-90)>E||ab(p.h)>E);
- h+=inc.length?inc.map(([p,i])=>`<p class="eq">Carga ${i+1}: F = ${f(p.F)} kN, ángulo θ = ${ang(p.an)}°<br>Fx${i+1} = F·cos(θ) = ${f(p.F)}·cos(${ang(p.an)}°) = ${f(p.h)} kN ${p.h>=0?'→':'←'}<br>Fy${i+1} = F·sen(θ) = ${f(p.F)}·sen(${ang(p.an)}°) = ${f(p.f)} kN ${p.f>=0?'↓':'↑'}</p>`).join(''):'<p class="eq">No hay cargas inclinadas: cada fuerza es vertical (Fy = F, Fx = 0).</p>';
+ h+=inc.length?inc.map(([p,i])=>`<p class="eq">Carga ${i+1}: F = ${f(p.F)} kN, ángulo θ = ${ang(p.th)}° medido desde ${p.rf=='v'?'la vertical':'la horizontal (la viga)'}, la fuerza apunta hacia la ${p.dir>0?'derecha':'izquierda'}<br>Fx${i+1} = F·${p.rf=='v'?'sen':'cos'}(θ) = ${f(p.F)}·${p.rf=='v'?'sen':'cos'}(${ang(p.th)}°) = ${f(ab(p.h))} kN ${p.h>=0?'→':'←'}<br>Fy${i+1} = F·${p.rf=='v'?'cos':'sen'}(θ) = ${f(p.F)}·${p.rf=='v'?'cos':'sen'}(${ang(p.th)}°) = ${f(ab(p.f))} kN ${p.f>=0?'↓':'↑'}</p>`).join(''):'<p class="eq">No hay cargas inclinadas: cada fuerza es vertical (Fy = F, Fx = 0).</p>';
  h+='<div class="st">② Resultante de las cargas repartidas</div>';
  h+=Q.length?Q.map((q,j)=>{const l=q.x2-q.x1;return `<p class="eq">Q${j+1} = q·L = ${f(q.w)}·${f(l)} = ${f(Wq(q))} kN<br>Actúa en el medio del tramo: ${f(l)} / 2 = ${f(l/2)} m desde donde empieza → x = ${f(cq(q))} m</p>`}).join(''):'<p class="eq">No hay cargas repartidas.</p>';
  h+='<div class="st">③ Ecuaciones de equilibrio</div>';
@@ -250,7 +305,7 @@ function pasos(s){
   const va=s.ev(a,true),vb=s.ev(b,false);
   h+=`<p class="eq"><b>Corte ${i+1}: ${f(a)} &lt; x &lt; ${f(b)} m</b><br>V(x) = ${J(V)}<br>M(x) = ${J(M)}<br>En x = ${f(a)}: V = ${f(va[0])} kN, M = ${f(va[1])} kN·m<br>En x = ${f(b)}: V = ${f(vb[0])} kN, M = ${f(vb[1])} kN·m`;
   s.keys.filter(k=>k>a+E&&k<b-E).forEach(k=>h+=`<br>V(x) = 0 en x = ${f(k)} m → M = ${f(s.ev(k,true)[1])} kN·m (máximo o mínimo de M)`);
-  h+='</p>'}
+  h+='</p>'+fbd(s,a,b,Rl,Pl,Ml,Ql,i+1)}
  $('pasos').innerHTML=h.replace(/kN/g,U())}
 function probe(){if(!LAST)return;const x=PX==null?LAST.L/2:PX,r=LAST.ev(x,true);$('pt').innerHTML=`En x = <b>${fmt(x)} m</b>: corte V = <b>${fmt(r[0])} kN</b>, momento M = <b>${fmt(r[1])} kN·m</b>`;$('pt').innerHTML=$('pt').innerHTML.replace(/kN/g,U())}
 $('pr').oninput=()=>{if(!LAST)return;PX=$('pr').value*LAST.L;draw(LAST);probe()};
@@ -259,7 +314,22 @@ $('cv').onpointerdown=mv;$('cv').onpointermove=mv;
 document.addEventListener('input',e=>{if(e.target.id!='pr')run(true)});document.addEventListener('change',e=>{if(e.target.id!='pr')run(true)});
 addEventListener('resize',()=>{if(LAST&&!$('res').hidden)draw(LAST)});
 matchMedia('(prefers-color-scheme:dark)').addEventListener('change',()=>{if(LAST&&!$('res').hidden)draw(LAST)});
-const TH=[['cuaderno','Cuaderno','#f3efe3','#1d4fa8'],['plano','Plano','#0f3a6b','#ffd54a'],['pizarra','Pizarra','#24352b','#f1f1e6'],['taller','Taller','#e6e6e2','#e8590c'],['noche','Noche','#15171a','#6db3ff']];
+const mv2=e=>{if(!LAST)return;const r=$('cv').getBoundingClientRect(),w=r.width,px=e.clientX-r.left,py=e.clientY-r.top,L=LAST.L,xm=Math.min(L,Math.max(0,(px-50)/(w-72)*L)),X=x=>50+x/L*(w-72);
+ if(e.type=='pointerdown'&&py<235){let best=null,bd=28;const t=(o,x,k)=>{const d=Math.abs(px-X(x));if(d<bd){bd=d;best={o,k,x0:xm}}};
+  LAST.P.forEach(p=>t(p,p.x,'p'));LAST.Mo.forEach(o=>t(o,o.x,'m'));LAST.Q.forEach(q=>t(q,(q.x1+q.x2)/2,'q'));
+  if(best){DR=best;if(AN)$('an').click();$('cv').setPointerCapture(e.pointerId)}}
+ if(DR){const o=DR.o,sn=v=>Math.round(v*20)/20,st=(n,v)=>o.d.querySelector('[name='+n+']').value=String(+v.toFixed(2)).replace('.',','),dx=xm-DR.x0;
+  if(DR.k=='q'){const len=o.x2-o.x1,a=Math.min(L-len,Math.max(0,sn(o.x1+dx)));st('x1',a);st('x2',a+len)}else st('x',Math.min(L,Math.max(0,sn(o.x+dx))));
+  run(true);return}
+ if(!(e.buttons||e.type=='pointerdown'))return;PX=xm;$('pr').value=PX/L;draw(LAST);probe()};
+$('cv').onpointerdown=mv2;$('cv').onpointermove=mv2;$('cv').onpointerup=$('cv').onpointercancel=()=>{if(DR){DR=null;run(true)}};
+$('an').onclick=()=>{if(AN){cancelAnimationFrame(AN);AN=0;$('an').textContent='Animar carga';run(true);return}
+ let d=document.querySelector('.ld[data-t=p]');if(!d){addLoad('p',['10','1']);d=document.querySelector('.ld[data-t=p]')}
+ const t0=performance.now();$('an').textContent='Parar animación';
+ const st=t=>{if(!d.isConnected){$('an').click();return}const L=num($('L').value);if(L>0){d.querySelector('[name=x]').value=(L/2*(1-Math.cos((t-t0)/1400))).toFixed(2).replace('.',',');run(true)}AN=requestAnimationFrame(st)};AN=requestAnimationFrame(st)};
+$('dfb').onclick=()=>{DF=!DF;$('dfb').textContent='Deformada: '+(DF?'sí':'no');$('dfb').setAttribute('aria-pressed',DF);if(LAST&&!$('res').hidden)draw(LAST)};
+$('fs').onclick=()=>{try{document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen()}catch(e){}};
+const TH=[['cuaderno','Cuaderno','#f3efe3','#1d4fa8'],['plano','Plano','#0f3a6b','#ffd54a'],['pizarra','Pizarra','#24352b','#f1f1e6'],['taller','Taller','#e6e6e2','#e8590c'],['noche','Noche','#15171a','#6db3ff'],['river','River','#ffffff','#e4002b'],['boca','Boca','#0b2a6b','#ffc72c'],['seleccion','Selección','#75aadb','#ffffff'],['minimal','Minimal','#f5f5f7','#0071e3'],['grafito','Grafito','#000000','#2997ff']];
 function setTh(id){document.documentElement.dataset.theme=id;try{localStorage.setItem('th',id)}catch(e){}$('tm').querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.t==id));if(LAST&&!$('res').hidden)draw(LAST)}
 $('tm').innerHTML=TH.map(t=>`<button data-t="${t[0]}" title="${t[1]}" aria-label="Tema ${t[1]}" style="background:linear-gradient(135deg,${t[2]} 50%,${t[3]} 50%)"></button>`).join('');
 $('tm').onclick=e=>{const b=e.target.closest('button');if(b)setTh(b.dataset.t)};
@@ -272,3 +342,5 @@ sync();ejemplo();
 </footer>
 </body>
 </html>
+
+</body></html>
